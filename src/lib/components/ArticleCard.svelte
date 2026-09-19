@@ -25,7 +25,7 @@
                 <CompanyLogo company={article.tags.companies[0]} size={28} />
             {/if}
             <div>
-                <h4 class="articleTitle">{article.title}</h4>
+                <h2 class="articleTitle">{article.title}</h2>
                 <p>{formatDate(article.date)}</p>
             </div>
         </span>
@@ -67,6 +67,10 @@
     .articleTitle {
         position: relative;
         display: inline-block;
+        /* was h4 — now h2 for correct heading order (h1→h2), but keep h4 visual size via rem */
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.3;
     }
     .articleTitle::after {
         content: "";

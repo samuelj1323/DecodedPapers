@@ -9,6 +9,11 @@
     let { data }: PageProps = $props();
 </script>
 
+<svelte:head>
+    <title>Decoded Papers — Engineering Papers, Decoded</title>
+    <meta name="description" content="Decoded Papers — deep dives decoding influential engineering papers." />
+</svelte:head>
+
 <div class="heroSection">
     <div class="patternStage" aria-hidden="true">
         <!-- layer 1: grid / dots / diagonal morph -->
