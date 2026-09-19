@@ -23,7 +23,7 @@
             {#if article.tags.companies[0]}
                 <CompanyLogo company={article.tags.companies[0]} size={28} />
             {/if}
-            <h4>{article.title}</h4>
+            <h4 class="articleTitle">{article.title}</h4>
         </span>
         <p>{formatDate(article.date)}</p>
     </div>
@@ -55,5 +55,34 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
+    }
+    .articleTitle {
+        position: relative;
+        display: inline-block;
+    }
+    .articleTitle::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+    }
+    .cardContainer,
+    .cardContainer :global(*) {
+        background: transparent;
+    }
+    .cardContainer {
+        background: var(--bg);
+    }
+    .cardContainer:hover {
+        background: color-mix(in srgb, var(--bg) 92%, black);
+    }
+    .cardContainer:hover .articleTitle::after {
+        transform: scaleX(1);
     }
 </style>

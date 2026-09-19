@@ -3,8 +3,27 @@
     import favicon from "$lib/assets/favicon.svg";
     import Header from "$lib/components/Header.svelte";
     import { activeRoutes } from "$lib/utils/constants";
+    import { onNavigate } from "$app/navigation";
 
     let { children } = $props();
+
+    onNavigate((navigation) => {
+        if (!document.startViewTransition) return;
+        const to = navigation.to?.url.pathname ?? "";
+        const isBack = to === "/" || to === "";
+        document.documentElement.classList.add("view-transition");
+        document.documentElement.dataset.direction = isBack ? "back" : "forward";
+        return new Promise((resolve) => {
+            document.startViewTransition(async () => {
+                resolve();
+                await navigation.complete;
+                setTimeout(() => {
+                    document.documentElement.classList.remove("view-transition");
+                    delete document.documentElement.dataset.direction;
+                }, 700);
+            });
+        });
+    });
 </script>
 
 <svelte:head>
