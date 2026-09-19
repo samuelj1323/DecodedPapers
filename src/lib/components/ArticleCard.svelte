@@ -99,6 +99,7 @@
     }
     .cardContainer .pillCotainer {
         display: flex;
+        flex-wrap: wrap;
         gap: 5px;
         margin-top: 5px;
     }

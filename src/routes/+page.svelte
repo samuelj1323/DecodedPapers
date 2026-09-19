@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import type { PageData } from "./$types";
     import ArticleCard from "$lib/components/ArticleCard.svelte";
 
@@ -7,6 +8,17 @@
     };
 
     let { data }: PageProps = $props();
+    // Defer decorative pattern layers until after first paint
+    // so FCP only waits on the h1, not gradients/masks/animations.
+    let showPatterns = $state(false);
+    onMount(() => {
+        const enable = () => (showPatterns = true);
+        if ("requestIdleCallback" in window) {
+            (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(enable);
+        } else {
+            requestAnimationFrame(() => requestAnimationFrame(enable));
+        }
+    });
 </script>
 
 <svelte:head>
@@ -15,6 +27,7 @@
 </svelte:head>
 
 <div class="heroSection">
+    {#if showPatterns}
     <div class="patternStage" aria-hidden="true">
         <!-- layer 1: grid / dots / diagonal morph -->
         <div class="pattern layer1"></div>
@@ -24,6 +37,7 @@
         <div class="pattern layer3"></div>
         <div class="vignette"></div>
     </div>
+    {/if}
     <h1>Decoded Papers</h1>
 </div>
 
@@ -49,6 +63,12 @@
         position: relative;
         z-index: 2;
         text-align: center;
+        text-wrap: balance;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        padding-inline: 1rem;
+        line-height: 1.05;
+        font-size: clamp(2rem, 8vw + 0.5rem, 4.5rem);
         background: transparent; /* let patterns show behind/around letterforms */
         /* subtle text shadow to pop off patterns */
         text-shadow: 0 1px 0 var(--bg), 0 0 24px color-mix(in srgb, var(--bg) 70%, transparent);
@@ -79,7 +99,7 @@
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         animation-play-state: paused;
-        will-change: opacity, transform;
+        /* no will-change until hover — avoids extra layers before FCP */
     }
     .layer1 {
         animation-name: seq1;
@@ -110,6 +130,7 @@
     .heroSection:focus-within .layer2,
     .heroSection:focus-within .layer3 {
         animation-play-state: running;
+        will-change: opacity, transform;
     }
 
     .vignette {
