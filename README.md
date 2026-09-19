@@ -1,42 +1,12 @@
-# sv
+# Purpose
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is a svelteKit project that will host MD blog posts that will break down technical postings and concepts from popular engineering blogs.
 
-## Creating a project
+## How blog posts will be delivered to the post route.
 
-If you're seeing this, you've probably already done this step. Congrats!
+The route will be constructed from {domainName.xyz}/posts/{name} where the name will have a 1:1 relationship to the posts in the src/posts/[name].md
+From there the server will deliver the md to the page where it will be parsed out and rendered in the page component.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## MD Make up
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-pnpm dlx sv@0.17.1 create --template minimal --types ts --install pnpm .
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The MD will have a section for tags for topics, techonologies, and companies, etc. That will allow the post to be found more easily.
