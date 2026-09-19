@@ -1,31 +1,25 @@
-import { error } from '@sveltejs/kit';
-import type { PageLoad } from './$types';
-
-type PostMetadata = {
-	title: string;
-	date: string;
-	summary: string;
-	tags: { topics: string[]; technologies: string[]; companies: string[] };
-	source: { label: string; url: string };
-};
+import { error } from "@sveltejs/kit";
+import type { PageLoad } from "./$types";
+import type { PostMetaData } from "$lib/types/types";
 
 export const load: PageLoad = async ({ params }) => {
-	const { name } = params;
+  const { name } = params;
 
-	// mdsvex compiles .md in src/posts to Svelte components with `metadata`
-	const modules = import.meta.glob('/src/posts/*.md', { eager: true });
+  // mdsvex compiles .md in src/posts to Svelte components with `metadata`
+  const modules = import.meta.glob("/src/posts/*.md", { eager: true });
 
-	// support /posts/understandingCloudflaresWorkerArchitecture -> understandingCloudflaresWorkerArchitecture.md
-	const path = `/src/posts/${name}.md`;
-	const mod = modules[path] as { default: import('svelte').Component; metadata: PostMetadata } | undefined;
+  // support /posts/understandingCloudflaresWorkerArchitecture -> understandingCloudflaresWorkerArchitecture.md
+  const path = `/src/posts/${name}.md`;
+  const mod = modules[path] as
+    { default: import("svelte").Component; metadata: PostMetaData } | undefined;
 
-	if (!mod) {
-		throw error(404, `Post "${name}" not found`);
-	}
+  if (!mod) {
+    throw error(404, `Post "${name}" not found`);
+  }
 
-	return {
-		name,
-		component: mod.default,
-		metadata: mod.metadata
-	};
+  return {
+    name,
+    component: mod.default,
+    metadata: mod.metadata,
+  };
 };

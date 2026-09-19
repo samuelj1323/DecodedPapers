@@ -1,13 +1,6 @@
 import type { PageLoad } from "./$types";
 import type { Component } from "svelte";
-
-type PostMetaData = {
-  title: string;
-  summary: string;
-  date: string;
-  tage: { topics: string[]; techonologies: string[] };
-  source: { label: string; url: string };
-};
+import type { PostMetaData } from "$lib/types/types";
 
 export const load: PageLoad = async ({ params }) => {
   const blogPosts = import.meta.glob("/src/posts/*.md");
