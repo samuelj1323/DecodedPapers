@@ -18,6 +18,22 @@ h3,
 h4 {
     font-family: orbitron;
     color: var(--red);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    line-height: 1.15;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 5vw + 0.5rem, 3rem);
+}
+h2 {
+    font-size: clamp(1.35rem, 3.5vw + 0.4rem, 2rem);
+}
+h3 {
+    font-size: clamp(1.1rem, 2.5vw + 0.35rem, 1.5rem);
+}
+h4 {
+    font-size: clamp(1rem, 2vw + 0.3rem, 1.25rem);
 }
 
 /* Red curtain wipe - fixed: no extra ::after, pure clip + red bg flash */

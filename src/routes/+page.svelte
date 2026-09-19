@@ -49,6 +49,12 @@
         position: relative;
         z-index: 2;
         text-align: center;
+        text-wrap: balance;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        padding-inline: 1rem;
+        line-height: 1.05;
+        font-size: clamp(2rem, 8vw + 0.5rem, 4.5rem);
         background: transparent; /* let patterns show behind/around letterforms */
         /* subtle text shadow to pop off patterns */
         text-shadow: 0 1px 0 var(--bg), 0 0 24px color-mix(in srgb, var(--bg) 70%, transparent);
