@@ -4,8 +4,11 @@
     import Header from "$lib/components/Header.svelte";
     import { activeRoutes } from "$lib/utils/constants";
     import { onNavigate } from "$app/navigation";
+    import { page } from "$app/state";
 
     let { children } = $props();
+
+    let showHeader = $derived(page.url.pathname.startsWith("/posts/"));
 
     onNavigate((navigation) => {
         if (!document.startViewTransition) return;
@@ -41,7 +44,9 @@
     />
 </svelte:head>
 
-<Header routes={activeRoutes} />
+ {#if showHeader}
+    <Header routes={activeRoutes} />
+{/if}
 <main class="home">
     {@render children()}
 </main>
