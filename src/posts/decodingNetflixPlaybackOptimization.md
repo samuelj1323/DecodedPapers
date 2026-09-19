@@ -1,6 +1,7 @@
 ---
 title: "Decoding Netflix Playback Optimization"
 date: "2026-02-28"
+draft: false
 summary: "Breaking down how Netflix optimizes video playback with adaptive bitrate streaming to keep you watching without buffering."
 tags:
   topics: ["video streaming", "adaptive bitrate", "distributed systems"]

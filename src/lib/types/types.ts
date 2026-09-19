@@ -8,6 +8,7 @@ export type PostMetaData = {
   title: string;
   summary: string;
   date: string;
+  draft?: boolean;
   tags: { topics: string[]; technologies: string[]; companies: string[] };
   source: { label: string; url: string };
 };

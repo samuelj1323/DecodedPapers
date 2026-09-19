@@ -1,6 +1,7 @@
 ---
 title: "Understanding Cloudflare's Worker Architecture"
 date: "2026-03-15"
+draft: false
 summary: "Decoding how Cloudflare uses V8 isolates to run millions of Workers at the edge with near-zero cold starts."
 tags:
   topics: ["edge computing", "serverless", "performance"]

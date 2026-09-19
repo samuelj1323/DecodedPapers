@@ -14,6 +14,7 @@ export const load: PageLoad = async ({ params }) => {
         slug,
         title: mod.metadata.title,
         date: mod.metadata.date,
+        draft: mod.metadata.draft ?? false,
         summary: mod.metadata.summary,
         tags: mod.metadata.tags,
         source: mod.metadata.source,
@@ -21,5 +22,7 @@ export const load: PageLoad = async ({ params }) => {
     }),
   );
   posts.sort((a, b) => b.date.localeCompare(a.date));
-  return { posts };
+  // Hide drafts (frontmatter `draft: true`) from the home page.
+  const published = posts.filter((p) => !p.draft);
+  return { posts: published };
 };

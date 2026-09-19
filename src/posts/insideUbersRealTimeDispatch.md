@@ -1,17 +1,18 @@
 ---
 title: "Inside Uber's Real-Time Dispatch"
 date: "2026-01-20"
+draft: false
 summary: "Unpacking how Uber matches riders and drivers in seconds using geospatial indexing and real-time event streaming."
 tags:
-  topics: ["geospatial", "real-time systems", "matching algorithms"]
-  technologies: ["H3", "Kafka", "Go"]
+  topics: ["geospatial","real-time systems","matching algorithms"]
+  technologies: ["H3","Kafka","Go"]
   companies: ["Uber"]
 source:
   label: "Uber Engineering - Dispatch Systems"
   url: "https://www.uber.com/blog/h3/"
 ---
 
-# Inside Uber's Real-Time Dispatch
+# Inside Uber's Real-Time Dispatchs
 
 ## TL;DR
 
