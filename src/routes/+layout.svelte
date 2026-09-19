@@ -38,10 +38,19 @@
         as="style"
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Schibsted+Grotesk:wght@400..900&family=Special+Elite&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
     />
+    <!-- non-blocking: media=print + onload swap avoids render-blocking -->
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Schibsted+Grotesk:wght@400..900&family=Special+Elite&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet"
+        media="print"
+        onload={(e) => ((e.currentTarget as HTMLLinkElement).media = "all")}
     />
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Schibsted+Grotesk:wght@400..900&family=Special+Elite&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+            rel="stylesheet"
+        />
+    </noscript>
 </svelte:head>
 
  {#if showHeader}
