@@ -1,0 +1,71 @@
+:root {
+    --spacing-10: 1em;
+    --gap: 5px;
+    --black: black;
+    --red: #d92906;
+    --bg: rgb(228, 226, 224);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: orbitron;
+    color: var(--red);
+}
+
+/* Red curtain wipe - fixed: no extra ::after, pure clip + red bg flash */
+:root::view-transition-group(root) {
+    animation-duration: 600ms;
+}
+:root::view-transition-old(root) {
+    animation: 300ms ease-in both curtain-out;
+}
+:root::view-transition-new(root) {
+    animation: 300ms ease-out 300ms both curtain-in;
+}
+html[data-direction="back"]::view-transition-old(root) {
+    animation-name: curtain-out-back;
+}
+html[data-direction="back"]::view-transition-new(root) {
+    animation-name: curtain-in-back;
+}
+html.view-transition {
+    background: var(--red);
+}
+@keyframes curtain-out {
+    from { clip-path: inset(0 0 0 0); }
+    to { clip-path: inset(0 100% 0 0); }
+}
+@keyframes curtain-in {
+    from { clip-path: inset(0 0 0 100%); }
+    to { clip-path: inset(0 0 0 0); }
+}
+@keyframes curtain-out-back {
+    from { clip-path: inset(0 0 0 0); }
+    to { clip-path: inset(0 0 0 100%); }
+}
+@keyframes curtain-in-back {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root::view-transition-old(root),
+    :root::view-transition-new(root) {
+        animation: none !important;
+    }
+}
+
+/* Fallback Slide+Push (commented) - uncomment to try instead of curtain
+::view-transition-old(root) { animation: 300ms ease-in both slide-out; }
+::view-transition-new(root) { animation: 380ms ease-out both slide-in; }
+@keyframes slide-out { to { transform: translateX(-12%); opacity: 0; } }
+@keyframes slide-in { from { transform: translateX(12%); opacity: 0; } }
+*/
