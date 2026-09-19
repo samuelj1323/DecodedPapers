@@ -2,8 +2,8 @@
     --spacing-10: 1em;
     --gap: 5px;
     --black: black;
-    --red: #d92906;
-    --bg: rgb(228, 226, 224);
+    --red: #b91f05; /* darker — was #d92906 */
+    --bg: #ede9e6; /* lighter — was rgb(228,226,224) / #e4e2e0 */
 }
 
 * {

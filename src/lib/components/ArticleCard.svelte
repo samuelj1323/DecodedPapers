@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { PostListItem } from "$lib/types/types";
     import CompanyLogo from "$lib/components/CompanyLogo.svelte";
+    import Pill from "./Pill.svelte";
 
     type ArticleCardProps = {
         article: PostListItem;
@@ -23,16 +24,22 @@
             {#if article.tags.companies[0]}
                 <CompanyLogo company={article.tags.companies[0]} size={28} />
             {/if}
-            <h4 class="articleTitle">{article.title}</h4>
+            <div>
+                <h2 class="articleTitle">{article.title}</h2>
+                <p>{formatDate(article.date)}</p>
+            </div>
         </span>
-        <p>{formatDate(article.date)}</p>
     </div>
 
     <p>{article.summary}</p>
-    <p>{JSON.stringify(article.tags.topics)}</p>
-    <p>{JSON.stringify(article.tags.technologies)}</p>
-
-    <p>{JSON.stringify(article.source)}</p>
+    <div class="pillCotainer">
+        {#each article.tags.technologies as techology}
+            <Pill label={techology} />
+        {/each}
+        {#each article.tags.topics as topic}
+            <Pill label={topic} />
+        {/each}
+    </div>
 </a>
 
 <style>
@@ -50,6 +57,7 @@
     .cardContainer .cardHeader {
         font-family: orbitron sans-serif;
         color: var(--red);
+        margin-bottom: 10px;
     }
     .cardContainer .cardHeader .titleSpan {
         display: inline-flex;
@@ -59,6 +67,10 @@
     .articleTitle {
         position: relative;
         display: inline-block;
+        /* was h4 — now h2 for correct heading order (h1→h2), but keep h4 visual size via rem */
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.3;
     }
     .articleTitle::after {
         content: "";
@@ -84,5 +96,10 @@
     }
     .cardContainer:hover .articleTitle::after {
         transform: scaleX(1);
+    }
+    .cardContainer .pillCotainer {
+        display: flex;
+        gap: 5px;
+        margin-top: 5px;
     }
 </style>
