@@ -2,13 +2,14 @@
     --spacing-10: 1em;
     --gap: 5px;
     --black: black;
-    --red: red;
-    --bg: white;
+    --red: #d92906;
+    --bg: rgb(228, 226, 224);
 }
 
 * {
     margin: 0;
     padding: 0;
+    background: var(--bg);
 }
 
 h1,

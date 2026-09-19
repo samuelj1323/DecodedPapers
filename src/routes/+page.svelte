@@ -10,6 +10,14 @@
 </script>
 
 <h1>Decoded Papers</h1>
-{#each data.posts as article (article.slug)}
-    <ArticleCard {article} />
-{/each}
+<section class="articlesContainer">
+    {#each data.posts as article (article.slug)}
+        <ArticleCard {article} />
+    {/each}
+</section>
+
+<style>
+    .articlesContainer {
+        margin: 10px 20px 30px 20px;
+    }
+</style>
