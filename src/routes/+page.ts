@@ -15,6 +15,8 @@ export const load: PageLoad = async ({ params }) => {
         title: mod.metadata.title,
         date: mod.metadata.date,
         summary: mod.metadata.summary,
+        tags: mod.metadata.tags,
+        source: mod.metadata.source,
       };
     }),
   );

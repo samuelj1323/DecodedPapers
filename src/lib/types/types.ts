@@ -8,8 +8,8 @@ export type PostMetaData = {
   title: string;
   summary: string;
   date: string;
-  tage: { topics: string[]; techonologies: string[] };
+  tags: { topics: string[]; technologies: string[]; companies: string[] };
   source: { label: string; url: string };
 };
 
-export type Post = {};
+export type PostListItem = PostMetaData & { slug: string };

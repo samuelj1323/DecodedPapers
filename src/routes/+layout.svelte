@@ -18,4 +18,12 @@
 </svelte:head>
 
 <Header routes={activeRoutes} />
-{@render children()}
+<main class="home">
+    {@render children()}
+</main>
+
+<style>
+    .home {
+        background: var(--bg);
+    }
+</style>
